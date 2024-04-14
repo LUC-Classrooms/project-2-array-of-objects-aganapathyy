@@ -1,7 +1,7 @@
 /*
  Project 2 - Array of Objects
- Name: 
- Comments: 
+ Name: Anya Ganapathy
+ Comments: A block with a sad face appears everytime the mouse is pressed and the color randomly filled each time
  */
 
 /*** 
@@ -11,16 +11,26 @@
 ***/
 
 // Global Variables go here
+var objects = new Array(1); // the argument to Array() defines its size
 
 function setup(){
   // this function will run once
   createCanvas(600, 400); // create a 600 x 400 pixel drawing canvas
-
-
+  for(var i = 0; i < objects.length; i++) {
+  objects[i] = new MyClass(random(width), random(height));
+  }
 }
 
 function draw(){
   background(200); //light gray background
-  
+  for(var i = 0; i < objects.length; i++){
+    objects[i].move(); // each time through the loop, move the next object in the array
+    objects[i].display(); // call the display method for each object (0 - 9)
+  }
 }
-
+function mousePressed(){ //when the mouse is pressed/clicked
+  let obj = new MyClass(mouseX, mouseY); // create new dot object
+  
+  objects.push(obj); // add to dots array
+  console.log(objects.length);
+}
